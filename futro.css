@@ -700,7 +700,6 @@ h4 {
   100% { transform: translateX(-100%);}
 }
 
-
 @media (max-width: 750px) {
   .products-cont {
       grid-template-columns: 1fr 1fr;
