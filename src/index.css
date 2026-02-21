@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes zoomOut {
+  from {
+    transform: perspective(1200px) rotateX(3deg) scale(1);
+  }
+  to {
+    transform: perspective(1200px) rotateX(3deg) scale(0.95);
+  }
+}
+
