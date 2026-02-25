@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useProductsStore from "../store/products";
 import { formatToNaira } from "../utils/formatCurrency";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -20,9 +21,7 @@ const ProductDetails = () => {
   
   return (
    <div>
-    <Link to="/" className="underline text-green-300 ml-2">
-        ← Back
-      </Link>
+    <Header />
     <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
       <div className="bg-gray-50 rounded-2xl p-6 shadow-md">
         <img
@@ -46,6 +45,9 @@ const ProductDetails = () => {
         </button>
       </div>
     </div>
+    <Link to="/" className="underline text-green-300 ml-2">
+        ← Back
+    </Link>
    </div>
   )
 }
