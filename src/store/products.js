@@ -5,8 +5,20 @@ const useProductsStore = create(
   persist(
     (set) => ({
   products: [],
-  setProducts: (newProducts) => set({ products: newProducts})
-})
+  cart: [],
+  setProducts: (newProducts) => set({ products: newProducts}),
+  addToCart: (product) => set((state) => ({
+    cart: [...state.cart, product],
+  })),
+  removeFromCart: (id) =>
+  set((state) => ({
+    cart: state.cart.filter((product) => product.id !== id),
+  })),
+}),
+  {
+    name: "products-storage",
+    getStorage: () =>localStorage,
+  }
   )
 );
 
