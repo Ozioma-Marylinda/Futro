@@ -58,13 +58,14 @@ function Main() {
         <p className="text-sm text-white">
           Quick campus delivery at your fingertips.
         </p>
-        <div>
+
+      <div>
         <div className="p-20 grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6">
-        {loading && (
-          <div className="col-span-full flex justify-center">
-            <div className="w-10 h-10 border-4 border-green-300 border-t-green-800 rounded-full animate-spin"></div>
-          </div>
-        )}
+          {loading && (
+            <div className="col-span-full flex justify-center">
+              <div className="w-10 h-10 border-4 border-green-300 border-t-green-800 rounded-full animate-spin"></div>
+            </div>
+          )}
 
         {error && (
           <p className="text-red-400 col-span-full text-center">
