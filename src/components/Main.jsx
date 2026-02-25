@@ -82,10 +82,8 @@ function Main() {
         {!loading && !error &&
           products.map((product) => (
           
-            <div
-              key={product.id}
-              className="bg-gray-50 rounded-xl p-4 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
+           <Link to={`/product/${product.id}`} key={product.id}>
+            <div className="bg-gray-50 rounded-xl p-4 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg">
               <img
                 src={product.image}
                 alt={product.title}
@@ -94,7 +92,7 @@ function Main() {
               <h2 className="text-sm font-bold text-green-800 mt-3">
                 {product.title}
               </h2>
-           <p>{formatToNaira(product.priceCents)}</p>
+              <p>{formatToNaira(product.priceCents)}</p>
               <p className="text-gray-500 text-sm mt-2 line-clamp-2">
                 {product.description}
               </p>
@@ -105,6 +103,7 @@ function Main() {
                 Add to cart
               </button>
             </div>
+            </Link>
           ))}
       </div>
         </div>

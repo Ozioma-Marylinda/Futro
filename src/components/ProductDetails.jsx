@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useProductsStore from "../store/products";
-
+import { formatToNaira } from "../utils/formatCurrency";
+import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -18,7 +19,11 @@ const ProductDetails = () => {
   }
   
   return (
-   <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
+   <div>
+    <Link to="/" className="underline text-green-300 ml-2">
+        ← Back
+      </Link>
+    <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
       <div className="bg-gray-50 rounded-2xl p-6 shadow-md">
         <img
           src={product.image}
@@ -29,9 +34,7 @@ const ProductDetails = () => {
 
       <div>
         <h1 className="text-3xl font-bold text-green-900">{product.title}</h1>
-        <p className="text-3xl font-extrabold text-green-700 mt-6">
-          ₦{product.price}
-        </p>
+         <p className="text-3xl font-extrabold text-green-700 mt-6">{formatToNaira(product.priceCents)}</p>
         <p className="text-gray-600 mt-8 leading-relaxed">
           {product.description}
         </p>
@@ -43,6 +46,7 @@ const ProductDetails = () => {
         </button>
       </div>
     </div>
+   </div>
   )
 }
 
