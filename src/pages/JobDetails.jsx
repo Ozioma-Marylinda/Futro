@@ -1,32 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const JobDetails = () => {
-  const { id } = useParams();
-  const [job, setJob] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const job = location.state;
 
-  useEffect(() => {
-    const fetchJob = async () => {
-      try {
-        const response = await fetch(`https://remotive.com/api/remote-jobs?search=${id}`);
-        const data = await response.json();
-        const foundJob = data.jobs.find(
-        (job) => job.toString() === id);
-      
-        setJob(foundJob);
-      } catch (error) {
-        console.error("Error fectching job:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchJob();
-  }, [id]);
-
-if (loading) return <p>Loading job...</p>;
-
-  if (!job) return <p>Job not found.</p>;
+  if (!job) {
+    return <p>Job not found.</p>;
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-6">
@@ -50,7 +30,9 @@ if (loading) return <p>Loading job...</p>;
 
       <div
         className="prose"
-        dangerouslySetInnerHTML={{ __html: job.description }}
+        dangerouslySetInnerHTML={{
+          __html: job.description,
+        }}
       />
 
       <a
