@@ -51,13 +51,17 @@ const CartPage = () => {
             </button>
           </div>
         ))}
-
         <div className="mt-6 text-right">
           <p className="text-xl font-bold">
             Total: {formatToNaira(totalPriceScents)}
           </p>
         </div>
       </div>
+      <Link to="/" className="underline text-green-300">
+        <button className="bg-green-600 text-white px-4 mt-2 py-2 rounded-full hover:bg-red-500 transition">
+             Add more
+        </button>
+      </Link>
     </div>
   );
 }

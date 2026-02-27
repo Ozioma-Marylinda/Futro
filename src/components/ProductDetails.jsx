@@ -1,7 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import useProductsStore from "../store/products";
 import { formatToNaira } from "../utils/formatCurrency";
-import Header from "./Header";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -27,7 +26,6 @@ const ProductDetails = () => {
   
   return (
    <div>
-    <Header />
     <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
       <div className="bg-gray-50 rounded-2xl p-6 shadow-md">
         <img
