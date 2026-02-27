@@ -12,13 +12,10 @@ const RemoteJobs = () => {
         const response = await fetch(
           "https://remotive.com/api/remote-jobs"
         );
-
         if (!response.ok) {
           throw new Error("Failed to fetch jobs");
         }
-
         const data = await response.json();
-
         setJobs(data.jobs);
 
       } catch (err) {
@@ -37,7 +34,7 @@ const RemoteJobs = () => {
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {jobs.map((job) => (
-        <Link to={`/jobs/${job.id}`} key={job.id}>
+        <Link to={`/jobs/${job.id}`} state={job} key={job.id}>
           <div className="bg-gray-50 rounded-xl p-4 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg">
             <img
               src={job.company_logo}
