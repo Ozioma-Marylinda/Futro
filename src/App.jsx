@@ -12,6 +12,7 @@ import SignUp from "./components/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import SellerDashboard from "./components/SellerDashboard";
 import Marketplace from "./components/Marketplace";
+import Errand from "./components/Errand";
 
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
           }
         />
         <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/errand" element={<Errand />} />
       </Routes>
     </Router>
     </>

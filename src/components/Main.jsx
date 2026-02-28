@@ -42,7 +42,7 @@ function Main() {
           <div className="errand flex gap-2 items-center">
             <p>We run your errands.</p>
             <p>Need something from Campus or town?</p>
-            <Button />
+            <Link to="/errand"><Button /></Link>
           </div>
           <p className="ml-auto">💬 24/7 student support</p>
         <p className="ml-auto font-bold">Are you a FUTO student seller? <Link to="/login" className="underline text-indigo-900">Join Futro</Link></p>
