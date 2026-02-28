@@ -16,6 +16,7 @@ import Marketplace from "./components/Marketplace";
 function App() {
   
   return (
+    <>
     <Router>
       <Header />
       <Routes>
@@ -37,6 +38,7 @@ function App() {
         <Route path="/marketplace" element={<Marketplace />} />
       </Routes>
     </Router>
+    </>
   );
 }
 
