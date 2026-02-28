@@ -7,6 +7,11 @@ const useProductsStore = create(
   products: [],
   cart: [],
   setProducts: (newProducts) => set({ products: newProducts}),
+  
+   addProduct: (newProduct) =>
+    set((state) => ({
+      products: [...state.products, newProduct],
+    })),
   addToCart: (product) => set((state) => ({
     cart: [...state.cart, product],
   })),

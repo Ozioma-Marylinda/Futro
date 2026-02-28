@@ -2,107 +2,88 @@ import { useState } from 'react';
 import useUserStore from '../store/useUserStore';
 import useProductsStore from '../store/products';
 import { Navigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
 const SellerDashboard = () => {
-  const { user } = useUserStore();
+  const { user, signOut} = useUserStore();
   const addProduct = useProductsStore((state) => state.addProduct);
   const products = useProductsStore((state) => state.products);
 
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState(null); 
+  const [image, setImage] = useState(null);
 
-  if (!user.isLoggedIn) return <Navigate to="/signup" />;
-
-  // Converting file to base64
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result); 
-    };
-    reader.readAsDataURL(file);
-  };
+  if (!user.isLoggedIn) return <Navigate to="/signin" />;
 
   const handleAddProduct = (e) => {
     e.preventDefault();
-    if (!title || !price || !image) return alert("Please fill all fields and upload an image!");
+    if (!title || !price || !image) return;
 
     const newProduct = {
-      id: uuidv4(),
-      title,
-      price,
-      description,
-      seller: user.name,
-      image,
-    };
+    id: crypto.randomUUID(), 
+    title,
+    price: Number(price),
+    image,
+    sellerEmail: user.email, 
+    sellerName: user.name,
+    createdAt: new Date(),
+  };
 
     addProduct(newProduct);
 
     setTitle('');
     setPrice('');
-    setDescription('');
     setImage(null);
-    document.getElementById('product-image').value = ''; 
+    document.getElementById('product-image').value = '';
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => setImage(reader.result);
+    reader.readAsDataURL(file);
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded mt-6">
-      <h2 className="text-2xl font-bold mb-4 text-[#00A86B]">
-        Welcome, {user.name}! Add a Product
+    <>
+     <h2 className="text-2xl font-bold mb-4 text-[#00A86B] text-center">
+        Welcome back {user.name}
       </h2>
-
+      <button
+        onClick={signOut}
+        className="mb-4 bg-gray-300 text-black py-1 px-3 rounded hover:bg-gray-400"
+      >
+        Sign Out
+      </button>
+    <div className="max-w-lg mx-auto p-4 bg-white shadow-md rounded mt-6">
+      <h3 className="text-2xl font-bold mb-4 text-[#00A86B] text-center">Add your products</h3>
       <form onSubmit={handleAddProduct} className="space-y-4">
-        <div>
-          <label className="block mb-1 font-semibold">Product Title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-semibold">Price (₦)</label>
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-semibold">Description</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block mb-1 font-semibold">Product Image</label>
-          <input
-            id="product-image"
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="w-full border px-3 py-2 rounded"
-            required
-          />
-        </div>
-
+        <input
+          type="text"
+          placeholder="Product Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full border px-3 py-2 rounded"
+          required
+        />
+        <input
+          type="number"
+          placeholder="Price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="w-full border px-3 py-2 rounded"
+          required
+        />
+        <input
+          id="product-image"
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="w-full border px-3 py-2 rounded"
+          required
+        />
         <button
           type="submit"
-          className="bg-[#00A86B] text-white py-2 px-4 rounded hover:bg-green-700 transition"
+          className="w-full bg-[#00A86B] text-white py-2 px-4 rounded hover:bg-green-700 transition"
         >
           Add Product
         </button>
@@ -114,12 +95,10 @@ const SellerDashboard = () => {
           <ul className="space-y-4">
             {products.map((p) => (
               <li key={p.id} className="border p-2 rounded flex gap-4">
-                {p.image && (
-                  <img src={p.image} alt={p.title} className="w-20 h-20 object-cover rounded" />
-                )}
+                <img src={p.image} alt={p.title} className="w-20 h-20 object-cover rounded" />
                 <div>
                   <strong>{p.title}</strong> - ₦{p.price} <br />
-                  <small>{p.description}</small>
+                  <small>Seller: {p.seller}</small>
                 </div>
               </li>
             ))}
@@ -127,6 +106,7 @@ const SellerDashboard = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

@@ -35,7 +35,7 @@ const cartCount = cart.length;
                   <li><Link to="/products">Product Categories</Link></li>
                   <li><Link to="/jobs">Remote jobs</Link></li>
                   <li><Link to="/lodges">Checkout Lodges</Link></li>
-                  <li><Link to="/sell">Sell/Advertise</Link></li>
+                  <li><Link to="/signup">Sell on Futro🏷️</Link></li>
                 </ul>
               </div>
 
@@ -44,7 +44,7 @@ const cartCount = cart.length;
                 <NavbarSearch />
               </div>
                     
-              <button aria-label="User-account">👤</button>
+              <Link to="/login"><button aria-label="User-account">👤</button></Link>
               <Link to="/cart" className="relative">
               <button aria-label="Cart">🛒
                 {cartCount > 0 && (<span className="absolute top-0 right-0 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">

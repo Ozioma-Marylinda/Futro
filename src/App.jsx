@@ -6,6 +6,11 @@ import JobDetails from "./pages/JobDetails";
 import RemoteJobs from "./components/RemoteJobs";
 import Header from "./components/Header";
 import SearchResult from "./components/SearchResult";
+import ProductCategories from "./components/ProductCategories";
+import SignIn from "./components/SingIn";
+import SignUp from "./components/SignUp";
+import PrivateRoute from "./components/PrivateRoute";
+import SellerDashboard from "./components/SellerDashboard";
 
 function App() {
   
@@ -19,6 +24,15 @@ function App() {
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/jobs" element={<RemoteJobs />} />
         <Route path="/search" element={<SearchResult />} />
+        <Route path="/products" element={<ProductCategories />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/seller-dashboard" element={
+            <PrivateRoute>
+              <SellerDashboard />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );

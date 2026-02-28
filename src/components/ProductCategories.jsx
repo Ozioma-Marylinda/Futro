@@ -1,14 +1,12 @@
-import useProductsStore from "../store/products";
-
+import MainProducts from "./MainProducts";
+import SellerProducts from "./SellerProducts";
 
 const ProductCategories = () => {
-  const productCategories = useProductsStore((state) => state.products);
-  const categories = productCategories.filter(products => products.categories)
+  
   return (
     <>
-    <h2 className="text-sm font-bold text-green-800 mt-3">
-      {product.category}
-    </h2>
+    <MainProducts />
+    <SellerProducts />
     </>
   )
 }
