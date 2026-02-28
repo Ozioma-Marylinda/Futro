@@ -4,7 +4,7 @@ import useProductsStore from "../store/products";
 import { useNavigate } from "react-router-dom";
 import useSearchStore from "../store/search";
 import NavbarSearch from "./NavbarSearch";
-import Marketplace from "./Marketplace";
+
 
 function Header() {
   const cart = useProductsStore((state) => state.cart);

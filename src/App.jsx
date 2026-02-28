@@ -41,7 +41,7 @@ function App() {
         <Route path="/sellers" element={<Marketplace />} />
         <Route path="/errand" element={<Errand />} />
         <Route path="/events" element={<FutoEvents />} />
-        <Route path="/sellers" element={<ProductCategories />} />
+        <Route path="/categories" element={<ProductCategories />} />
       </Routes>
     </Router>
     </>
