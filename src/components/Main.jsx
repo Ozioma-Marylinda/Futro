@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import useProductsStore from "../store/products";
 import { Link } from "react-router-dom";
-import Hero from "./Hero"
-import Button from "./Button";
 import { formatToNaira } from "../utils/formatCurrency";
 import heroAd from "../assets/videos/ad.mp4";
 
@@ -60,7 +58,7 @@ function Main() {
         Buy, Sell & Get Things Done — All on one Platform
       </p>
 
-      <Link to="/marketplace">
+      <Link to="/categories">
         <button className="mt-6 bg-[#00A86B] text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-green-700 transition">
           Explore Marketplace
         </button>
@@ -80,7 +78,9 @@ function Main() {
         <p>Need something from Town?</p>
       </div>
       <Link to="/errand" className="mt-2 md:mt-0 mr-8 ml-0">
-        <Button />
+       <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-2 py-2 rounded-xl shadow-md transition duration-300">
+        Send Futro🚚
+      </button>
       </Link>
       </div>
 
