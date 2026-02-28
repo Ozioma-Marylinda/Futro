@@ -3,15 +3,15 @@ import useSellersStore from "../store/useSellersStore";
 const Marketplace = () => {
   const sellerProducts = useSellersStore((state) => state.sellerProducts);
 
-  if (!sellerProducts.length)
+  if (sellerProducts.length === 0) {
     return (
       <div className="text-center mt-10">
         <h2 className="text-2xl font-bold text-[#00A86B]">Marketplace</h2>
         <p className="mt-4 text-gray-600">No seller products yet.</p>
       </div>
     );
-
-  const categories = [...new Set(sellerProducts.map((p) => p.category))];
+  }
+  const categories = [...new Set(sellerProducts.map((product) => product.category))];
 
   return (
     <div className="max-w-6xl mx-auto p-6">

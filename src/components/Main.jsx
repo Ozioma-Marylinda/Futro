@@ -45,7 +45,7 @@ function Main() {
             <Button />
           </div>
           <p className="ml-auto">💬 24/7 student support</p>
-        <p className="ml-auto font-bold">Are you a FUTO student seller? <Link to="/sell" className="underline text-indigo-900">Join Futro</Link></p>
+        <p className="ml-auto font-bold">Are you a FUTO student seller? <Link to="/login" className="underline text-indigo-900">Join Futro</Link></p>
         </div>
       </section>
       <section className="product-section flex flex-wrap text-center ">
