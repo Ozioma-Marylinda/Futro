@@ -11,6 +11,7 @@ import SignIn from "./components/SingIn";
 import SignUp from "./components/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import SellerDashboard from "./components/SellerDashboard";
+import Marketplace from "./components/Marketplace";
 
 function App() {
   
@@ -24,7 +25,7 @@ function App() {
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/jobs" element={<RemoteJobs />} />
         <Route path="/search" element={<SearchResult />} />
-        <Route path="/products" element={<ProductCategories />} />
+        <Route path="/categories" element={<ProductCategories />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/seller-dashboard" element={
@@ -33,6 +34,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/marketplace" element={<Marketplace />} />
       </Routes>
     </Router>
   );

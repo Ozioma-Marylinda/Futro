@@ -32,7 +32,7 @@ const cartCount = cart.length;
                 <h1 className="font-black text-lg"><Link to="/">FUTRO</Link></h1>
                 
                 <ul className="flex gap-4">
-                  <li><Link to="/products">Product Categories</Link></li>
+                  <li><Link to="/categories">Product Categories</Link></li>
                   <li><Link to="/jobs">Remote jobs</Link></li>
                   <li><Link to="/lodges">Checkout Lodges</Link></li>
                   <li><Link to="/signup">Sell on Futro🏷️</Link></li>

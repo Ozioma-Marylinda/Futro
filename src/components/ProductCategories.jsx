@@ -1,12 +1,10 @@
-import MainProducts from "./MainProducts";
-import SellerProducts from "./SellerProducts";
+import Marketplace from "./Marketplace";
 
 const ProductCategories = () => {
   
   return (
     <>
-    <MainProducts />
-    <SellerProducts />
+    <Marketplace />
     </>
   )
 }

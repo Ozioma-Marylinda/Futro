@@ -11,18 +11,30 @@ const SellerDashboard = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
+  const [category, setCategory] = useState("");
+  const [newCategory, setNewCategory] = useState("");
+
+  const sellerCategories = [
+    ...new Set(
+      sellerProducts
+        .filter((p) => p.sellerEmail === user.email)
+        .map((p) => p.category)
+    ),
+  ];
 
   if (!user.isLoggedIn) return <Navigate to="/signin" />;
 
   const handleAddProduct = (e) => {
   e.preventDefault();
 
+  const finalCategory = newCategory || category;
   if (!title || !price || !image) return;
 
   const newProduct = {
     id: crypto.randomUUID(),
     title,
     price: Number(price),
+    category: finalCategory,
     image,
     sellerEmail: user.email,
     sellerName: user.name,
@@ -34,11 +46,14 @@ const SellerDashboard = () => {
   setTitle('');
   setPrice('');
   setImage(null);
+  setCategory("");
+  setNewCategory("");
   document.getElementById('product-image').value = '';
 };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
     const reader = new FileReader();
     reader.onloadend = () => setImage(reader.result);
     reader.readAsDataURL(file);
@@ -51,7 +66,7 @@ const SellerDashboard = () => {
       </h2>
       <button
         onClick={signOut}
-        className="mb-4 bg-gray-300 text-black py-1 px-3 rounded hover:bg-gray-400"
+        className="mb-4 bg-gray-300 text-black py-1 px-3 rounded hover:bg-gray-400 text-center"
       >
         Sign Out
       </button>
@@ -74,6 +89,28 @@ const SellerDashboard = () => {
           className="w-full border px-3 py-2 rounded"
           required
         />
+
+         <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+          >
+            <option value="">Select Existing Category</option>
+            {sellerCategories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+
+          <input
+            type="text"
+            placeholder="Or add a new category"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            className="w-full border px-3 py-2 rounded"
+          />
+
         <input
           id="product-image"
           type="file"
@@ -101,6 +138,7 @@ const SellerDashboard = () => {
                 <img src={p.image} alt={p.title} className="w-20 h-20 object-cover rounded" />
                 <div>
                   <strong>{p.title}</strong> - ₦{p.price} <br />
+                  <small>Category: {p.category}</small>
                   <small>Seller: {p.seller}</small>
                 </div>
               </li>

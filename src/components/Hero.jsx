@@ -13,7 +13,7 @@ export default function Hero() {
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
       <div className="relative z-10 flex items-center justify-center h-full bg-black/40">
-        <h1 className="text-white text-4xl font-bold"><Link to="/sell">Your Ad Here</Link>
+        <h1 className="text-white text-4xl font-bold"><Link to="/login">Your Ad Here</Link>
         </h1>
       </div>
     </section>
