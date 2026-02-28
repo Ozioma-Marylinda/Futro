@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useSearchStore from "../store/search";
 import useProductsStore from "../store/products";
@@ -6,10 +6,14 @@ import useJobsStore from "../store/jobs";
 
 const SearchResult = () => {
   const location = useLocation();
+
   const searchTerm = useSearchStore((state) => state.searchTerm);
   const setSearchTerm = useSearchStore((state) => state.setSearchTerm);
+
   const products = useProductsStore((state) => state.products);
   const jobs = useJobsStore((state) => state.jobs);
+
+  const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -20,21 +24,22 @@ const SearchResult = () => {
     }
   }, [location.search, setSearchTerm]);
 
-  const [imageLoading, setImageLoading] = useState(true);
-
   const filteredProducts = useMemo(() => {
+    if (!searchTerm.trim()) return [];
     return products.filter((item) =>
       item?.name?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [products, searchTerm]);
 
   const filteredJobs = useMemo(() => {
+    if (!searchTerm.trim()) return [];
     return jobs.filter((item) =>
       item?.title?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [jobs, searchTerm]);
 
   const noResults =
+    searchTerm.trim() &&
     filteredProducts.length === 0 &&
     filteredJobs.length === 0;
 
@@ -52,7 +57,8 @@ const SearchResult = () => {
       <h1 className="text-2xl font-bold mb-6">
         Results for "{searchTerm}"
       </h1>
-     {/* filtering products */}
+
+      {/* filtering products */}
       {filteredProducts.length > 0 && (
         <>
           <h2 className="text-xl font-semibold mb-4">🛍 Products</h2>
@@ -83,7 +89,7 @@ const SearchResult = () => {
         </>
       )}
 
-      {/*filtering jobs */}
+      {/* filtering jobs */}
       {filteredJobs.length > 0 && (
         <>
           <h2 className="text-xl font-semibold mb-4">💼 Jobs</h2>
@@ -100,7 +106,7 @@ const SearchResult = () => {
         </>
       )}
 
-      {/* no result */}
+      {/* No result */}
       {noResults && (
         <p className="text-gray-500 text-center mt-10">
           No results found.
