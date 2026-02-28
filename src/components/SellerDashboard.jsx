@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import useUserStore from '../store/useUserStore';
-import useProductsStore from '../store/products';
+import useSellersStore from '../store/useSellersStore';
 import { Navigate } from 'react-router-dom';
 
 const SellerDashboard = () => {
   const { user, signOut} = useUserStore();
-  const addProduct = useProductsStore((state) => state.addProduct);
-  const products = useProductsStore((state) => state.products);
+  const addSellerProduct = useSellersStore((state) => state.addSellerProduct);
+  const sellerProducts = useSellersStore((state) => state.sellerProducts);
 
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -15,26 +15,27 @@ const SellerDashboard = () => {
   if (!user.isLoggedIn) return <Navigate to="/signin" />;
 
   const handleAddProduct = (e) => {
-    e.preventDefault();
-    if (!title || !price || !image) return;
+  e.preventDefault();
 
-    const newProduct = {
-    id: crypto.randomUUID(), 
+  if (!title || !price || !image) return;
+
+  const newProduct = {
+    id: crypto.randomUUID(),
     title,
     price: Number(price),
     image,
-    sellerEmail: user.email, 
+    sellerEmail: user.email,
     sellerName: user.name,
     createdAt: new Date(),
   };
 
-    addProduct(newProduct);
+  addSellerProduct(newProduct);
 
-    setTitle('');
-    setPrice('');
-    setImage(null);
-    document.getElementById('product-image').value = '';
-  };
+  setTitle('');
+  setPrice('');
+  setImage(null);
+  document.getElementById('product-image').value = '';
+};
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -89,11 +90,13 @@ const SellerDashboard = () => {
         </button>
       </form>
 
-      {products.length > 0 && (
+      {sellerProducts.length > 0 && (
         <div className="mt-6">
           <h3 className="text-xl font-bold mb-2 text-[#00A86B]">Your Products</h3>
           <ul className="space-y-4">
-            {products.map((p) => (
+            {sellerProducts
+              .filter((p) => p.sellerEmail === user.email)
+              .map((p) => (
               <li key={p.id} className="border p-2 rounded flex gap-4">
                 <img src={p.image} alt={p.title} className="w-20 h-20 object-cover rounded" />
                 <div>
