@@ -86,11 +86,11 @@ function Main() {
             <div className="bg-gray-50 rounded-xl p-4 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg">
               <img
                 src={product.image}
-                alt={product.title}
+                alt={product.name}
                 className="w-full h-40 object-contain bg-green-50 rounded-lg"
               />
               <h2 className="text-sm font-bold text-green-800 mt-3">
-                {product.title}
+                {product.name}
               </h2>
               <p>{formatToNaira(product.priceCents)}</p>
               <p className="text-gray-500 text-sm mt-2 line-clamp-2">

@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
 import useProductsStore from "../store/products";
+import { useNavigate } from "react-router-dom";
+import useSearchStore from "../store/search";
+import NavbarSearch from "./NavbarSearch";
 
 function Header() {
-  const cart = useProductsStore((state) => state.cart)
-  const cartCount = cart.length;
+const cart = useProductsStore((state) => state.cart)
+const cartCount = cart.length;
+
+  const navigate = useNavigate();
+  const setSearchTerm = useSearchStore((state) => state.setSearchTerm);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const query = formData.get("search");
+        if (!query.trim()) return;
+        setSearchTerm(query); 
+        navigate(`/search?q=${query}`);
+        };
 
   return (
         <header className="bg-green-500 ">
@@ -25,13 +40,10 @@ function Header() {
               </div>
 
             <div className="flex items-center gap-4">
-              <form role="search">
-                <input type="search" 
-                placeholder="Search products, services, lodges" 
-                aria-label="Search" 
-                className="p-2 rounded-full text-black" />
-              </form>
-            
+              <div className="flex items-center gap-4">
+                <NavbarSearch />
+              </div>
+                    
               <button aria-label="User-account">👤</button>
               <Link to="/cart" className="relative">
               <button aria-label="Cart">🛒

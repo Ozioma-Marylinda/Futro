@@ -30,13 +30,13 @@ const ProductDetails = () => {
       <div className="bg-gray-50 rounded-2xl p-6 shadow-md">
         <img
           src={product.image}
-          alt={product.title}
+          alt={product.name}
           className="w-full h-96 object-contain"
         />
       </div>
 
       <div>
-        <h1 className="text-3xl font-bold text-green-900">{product.title}</h1>
+        <h1 className="text-3xl font-bold text-green-900">{product.name}</h1>
          <p className="text-3xl font-extrabold text-green-700 mt-6">{formatToNaira(product.priceCents)}</p>
         <p className="text-gray-600 mt-8 leading-relaxed">
           {product.description}

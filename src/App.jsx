@@ -5,6 +5,7 @@ import Cart from "./pages/CartPage";
 import JobDetails from "./pages/JobDetails";
 import RemoteJobs from "./components/RemoteJobs";
 import Header from "./components/Header";
+import SearchResult from "./components/SearchResult";
 
 function App() {
   
@@ -17,6 +18,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/jobs" element={<RemoteJobs />} />
+        <Route path="/search" element={<SearchResult />} />
       </Routes>
     </Router>
   );

@@ -1,3 +1,5 @@
+import NavbarSearch from "./NavbarSearch";
+
 function Navbar() {
 
   return (
