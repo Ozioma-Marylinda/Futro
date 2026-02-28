@@ -34,11 +34,11 @@ function Main() {
    
   return (
     <>
-  <section className="w-full min-h-[60vh] bg-black text-white">
+ <section className="w-full min-h-[60vh] bg-black text-white">
 
   <div className="flex flex-col lg:flex-row h-full">
 
-    <div className="w-full lg:w-1/2 h-[40vh] lg:h-auto">
+    <div className="w-full lg:w-1/2 h-[40vh] lg:h-auto relative">
       <video
         src={heroAd}
         autoPlay
@@ -47,6 +47,11 @@ function Main() {
         playsInline
         className="w-full h-full object-cover"
       />
+      <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-10">
+        <h1 className="text-white text-4xl font-bold">
+          <Link to="/login">Your Ad Here</Link>
+        </h1>
+      </div>
     </div>
 
     <div className="w-full lg:w-1/2 flex flex-col justify-center items-center text-center px-6 py-10">
