@@ -13,6 +13,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import SellerDashboard from "./components/SellerDashboard";
 import Marketplace from "./components/Marketplace";
 import Errand from "./components/Errand";
+import FutoEvents from "./components/FutoEvents";
+
 
 function App() {
   
@@ -36,8 +38,10 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/sellers" element={<Marketplace />} />
         <Route path="/errand" element={<Errand />} />
+        <Route path="/events" element={<FutoEvents />} />
+        <Route path="/sellers" element={<ProductCategories />} />
       </Routes>
     </Router>
     </>

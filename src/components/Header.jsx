@@ -4,6 +4,7 @@ import useProductsStore from "../store/products";
 import { useNavigate } from "react-router-dom";
 import useSearchStore from "../store/search";
 import NavbarSearch from "./NavbarSearch";
+import Marketplace from "./Marketplace";
 
 function Header() {
   const cart = useProductsStore((state) => state.cart);
@@ -27,13 +28,14 @@ function Header() {
     <header className="bg-green-500">
       <div className="bg-green-800 flex p-2 justify-between text-white text-sm">
         <div>🎓 All-in-one digital ecosystem for FUTO students</div>
-        <p>FUTO Events Calendar</p>
+        <Link to="/events"><p>FUTO Events Calendar</p></Link>
       </div>
 
       <nav className="bg-green-600 p-4 text-white">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <h1 className="font-black text-lg">
+            <h1 className="flex items-center gap-2 font-extrabold text-[2.5rem] text-white">
+              <span>🛍️</span>
               <Link to="/">FUTRO</Link>
             </h1>
           </div>
@@ -46,7 +48,7 @@ function Header() {
               <Link to="/jobs">Remote Jobs</Link>
             </li>
             <li>
-              <Link to="/lodges">Checkout Lodges</Link>
+              <Link to="/sellers">Sellers Hub</Link>
             </li>
             <li>
               <Link to="/signup">Sell on Futro🏷️</Link>
@@ -55,19 +57,18 @@ function Header() {
 
           <div className="hidden md:flex items-center gap-4">
             <NavbarSearch onSubmit={handleSubmit} />
-            <Link to="/login">
-              <button aria-label="User-account">👤</button>
-            </Link>
-            <Link to="/cart" className="relative">
-              <button aria-label="Cart">
-                🛒
+             <Link to="/login" onClick={() => setMenuOpen(false)}>
+                <span className="text-2xl md:text-4xl">👤</span>
+              </Link>
+            <Link to="/cart" className="relative" onClick={() => setMenuOpen(false)}>
+                <span className="text-5xl">🛒</span>
+
                 {cartCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <span className="absolute -top-1 -right-2 bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm">
                     {cartCount}
                   </span>
                 )}
-              </button>
-            </Link>
+              </Link>
           </div>
 
           <button
@@ -92,8 +93,8 @@ function Header() {
                 </Link>
               </li>
               <li>
-                <Link to="/lodges" onClick={() => setMenuOpen(false)}>
-                  Checkout Lodges
+                <Link to="/sellers" onClick={() => setMenuOpen(false)}>
+                  Sellers Hub
                 </Link>
               </li>
               <li>
@@ -105,14 +106,16 @@ function Header() {
             <div className="mt-4">
               <NavbarSearch onSubmit={handleSubmit} />
             </div>
-            <div className="flex items-center gap-4 mt-2">
+              <div className="flex items-center gap-4 mt-2">
               <Link to="/login" onClick={() => setMenuOpen(false)}>
-                👤
+                <span className="text-2xl md:text-4xl">👤</span>
               </Link>
-              <Link to="/cart" className="relative" onClick={() => setMenuOpen(false)}>
-                🛒
+
+             <Link to="/cart" className="relative" onClick={() => setMenuOpen(false)}>
+                <span className="text-5xl">🛒</span>
+
                 {cartCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  <span className="absolute -top-1 -right-2 bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm">
                     {cartCount}
                   </span>
                 )}
