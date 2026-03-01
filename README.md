@@ -32,13 +32,7 @@ From buying groceries at Relief Market to delivering parcels between hostels and
 
 🛒 Campus Marketplace — Shop from verified student vendors.
 
-🏠 Lodge Finder — Find available lodges on and off campus.
-
 🚴 Fast Delivery — Reliable campus-wide logistics.
-
-💬 Real-Time Communication — Chat with vendors or runners.
-
-💳 Secure Payments — Safe and seamless transactions.
 
 👥 Student Opportunities — Register as a vendor or runner and earn.
 
@@ -73,12 +67,14 @@ FUTRO aims to become the #1 student convenience app in Nigeria, starting from FU
 ### Mission Statement
 “To make student life easier through technology — one errand at a time.”
 
+# Campus Errands App
+
+Live Site: https://futroapp.vercel.app/
+Loom link: https://www.loom.com/share/5c5af223f486455e9a4725c43e8978b1
+
 ### 👩‍💻 Founder
 Ozioma Marylinda
 Frontend Web Developer | Creative Tech Professional | Innovator
 LinkedIn • [Twitter](https://x.com/OziomaMarylinda)
 
-📌 Project Status
 
-Currently in development as an ALX Capstone Project.
-More features and improvements coming soon.
