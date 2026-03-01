@@ -14,6 +14,7 @@ import SellerDashboard from "./components/SellerDashboard";
 import Marketplace from "./components/Marketplace";
 import Errand from "./components/Errand";
 import FutoEvents from "./components/FutoEvents";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 function App() {
@@ -29,7 +30,6 @@ function App() {
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/jobs" element={<RemoteJobs />} />
         <Route path="/search" element={<SearchResult />} />
-        <Route path="/categories" element={<ProductCategories />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/seller-dashboard" element={
@@ -39,7 +39,14 @@ function App() {
           }
         />
         <Route path="/sellers" element={<Marketplace />} />
-        <Route path="/errand" element={<Errand />} />
+        <Route
+          path="/errand"
+          element={
+            <ProtectedRoute>
+              <Errand />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/events" element={<FutoEvents />} />
         <Route path="/categories" element={<ProductCategories />} />
       </Routes>

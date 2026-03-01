@@ -3,6 +3,7 @@ import useProductsStore from "../store/products";
 import { Link } from "react-router-dom";
 import { formatToNaira } from "../utils/formatCurrency";
 import heroAd from "../assets/videos/ad.mp4";
+import Button from "./Button"
 
 function Main() {
   const setProducts = useProductsStore((state) => state.setProducts);
@@ -83,9 +84,9 @@ function Main() {
         <p>Need something from Town?</p>
       </div>
       <Link to="/errand" className="mt-2 md:mt-0 mr-8 ml-0">
-       <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-2 py-2 rounded-xl shadow-md transition duration-300">
+        <button className="bg-green-600 hover:bg-green-700 text-white font-semibold px-2 py-2 rounded-xl shadow-md transition duration-300">
         Send Futro🚚
-      </button>
+        </button>
       </Link>
       </div>
 

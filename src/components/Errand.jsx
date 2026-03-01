@@ -4,14 +4,16 @@ import useErrandsStore from "../store/useErrandsStore";
 import { Navigate } from "react-router-dom";
 
 const Errand = () => {
-  const { user } = useUserStore();
+  const user = useUserStore((state) => state.user);
   const addErrand = useErrandsStore((state) => state.addErrand);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [deadline, setDeadline] = useState("");
 
-  if (!user.isLoggedIn) return <Navigate to="/signin" />;
+  if (!user || !user.isLoggedIn) {
+  return <Navigate to="/login" replace />;
+ }
 
   const handleSubmit = (e) => {
     e.preventDefault();
